@@ -21,18 +21,13 @@ def icdcode(value):
     filtered = df[df['county_code'] == value]
     return filtered.to_json(orient="records")
 
-@app.route('/county_code')
-def county():
-    county = df[df['county_code'] == value]
-    return county
-
-@app.route('/count', methods=["GET"])
-def count():
-    theresult = df.head(25)
-    want = theresult.to_json(orient="records")
-    return want
-
-    
+#7.0
+@app.route('/silly/<value>', methods=['GET'])
+    def countycode(value):
+        print('value: ', value)
+        fill = requests.args.get(value)
+        filtered = df[df['county_code'] == value]
+        return filtered.to_json(orient="records")
 
 if __name__ == '__main__':
     app.run(debug=True)
