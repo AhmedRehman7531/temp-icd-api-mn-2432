@@ -19,15 +19,12 @@ def preview():
 def icdcode(value):
     print('value: ', value)
     filtered = df[df['county_code'] == value]
-    if len(filtered) <= 0:
-        return 'There is nothing here'
-    else: 
-        return filtered.to_json(orient="records")
+    return filtered.to_json(orient="records")
 
 @app.route('/county_code')
 def county():
     county = df[df['county_code'] == value]
-    return county.to_json(orient="records")    
+    return county
 
 @app.route('/count', methods=["GET"])
 def count():
