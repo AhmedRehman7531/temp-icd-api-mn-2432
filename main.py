@@ -7,18 +7,18 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET"])
 def home():
-    return 'this is a API service for MN ICD code details'
+    return 'Time to get some County Codes!!!..... I Hope.....'
 
 @app.route('/preview', methods=["GET"])
 def preview():
-    top10rows = df.head(1)
+    top10rows = df.head(25)
     result = top10rows.to_json(orient="records")
     return result
 
-@app.route('/icd/<value>', methods=['GET'])
+@app.route('/county_code/<value>', methods=['GET'])
 def icdcode(value):
     print('value: ', value)
-    filtered = df[df['principal_diagnosis_code'] == value]
+    filtered = df[df['county_code'] == value]
     if len(filtered) <= 0:
         return 'There is nothing here'
     else: 
