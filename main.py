@@ -28,6 +28,14 @@ def icdcode(value):
 def county():
     county = df[df['county_code'] == value]
     return county.to_json(orient="records")    
+
+@app.route('/count')
+def count():
+    result = request.args.get('result')
+    filtered_df = df[df['county_code'] == result]
+    count = len(filtered_df)
+    return str(count)
+
     
 
 if __name__ == '__main__':
