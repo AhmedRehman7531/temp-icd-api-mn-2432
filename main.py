@@ -29,12 +29,11 @@ def county():
     county = df[df['county_code'] == value]
     return county.to_json(orient="records")    
 
-@app.route('/count')
+@app.route('/count', methods=["GET"])
 def count():
-    result = request.args.get('result')
-    filtered_df = df[df['county_code'] == result]
-    count = len(filtered_df)
-    return str(count)
+    theresult = df.head(25)
+    want = theresult.to_json(orient="records")
+    return want
 
     
 
