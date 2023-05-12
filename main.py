@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET"])
 def home():
-    return 'Time to get some County Codes!!!..... I Hope.....'
+    return 'Time to get some encounter count!!!..... I Hope.....'
 
 @app.route('/preview', methods=["GET"])
 def preview():
@@ -25,7 +25,7 @@ def icdcode(value):
 @app.route('/silly/<value>', methods=['GET'])
 def countycode(value):
     print('value: ', value)
-    filtered = df[df['county_code'] == value]
+    filtered = df[df['encounter_count'] == value]
     if len(filtered) <= 0:
         return 'There is nothing here'
     else: 
@@ -34,7 +34,7 @@ def countycode(value):
 #7.0
 @app.route('/silly/<value>/sex/<value2>', methods=['GET'])
 def countycode2(value, value2):
-    filtered = df[df['county_code'] == value]
+    filtered = df[df['encounter_count'] == value]
     filtered2 = filtered[filtered['sex'] == value2]
     if len(filtered2) <= 0:
         return 'There is nothing here'
